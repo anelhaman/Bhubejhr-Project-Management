@@ -1,45 +1,107 @@
 <?php
 class User{
     public $id;
-	public $tel;
-    private $password;
-	public $name;
-    public $lastname;
+    public $username;
+    public $name;
+    public $email;
+    public $company;
+    public $position;
+    public $type;
+    public $permission;
+    public $status;
+    public $ip;
+    public $register_time;
+    public $visit_time;
+    public $edit_time;
+    public $total_app;
+    public $app_limit;
 
-	private $db;
+    private $password;
+    private $salt;
+    private $db;
+    private $key = 'bRuD5WYw5wd0rdHR9yLlM6wt2vteuiniQBqE70nAuhU=';
 
     public function __construct() {
-    	global $wpdb;
-    	$this->db = $wpdb;
-
-
-
-
+        global $wpdb;
+        $this->db = $wpdb;
     }
 
-    public function get($cid){
-    	$this->db->query('SELECT * FROM user WHERE id = :cid');
-		$this->db->bind(':cid',$cid);
-		$this->db->execute();
-		$dataset = $this->db->single();
-
-		$this->id 		= $dataset['id'];
-		$this->username = $dataset['Username'];
-		$this->name 	= $dataset['Name'];
-		$this->cid 		= $dataset['ID_CARD'];
-		$this->password = $dataset['pass'];
-       //  $this->prename  = $this->getPrename($this->cid);
-
-        //print_r($dataset);
+    private function updateVisitTime($user_id){
+        $this->db->query('UPDATE user SET visit_time = :visit_time WHERE id = :user_id');
+        $this->db->bind(':user_id' ,$user_id);
+        $this->db->bind(':visit_time' ,date('Y-m-d H:i:s'));
+        $this->db->execute();
     }
 
+    public function getUser($user_id){
+        $this->db->query('SELECT id,username,name,email,company,position,password,salt,type,permission,status,ip,register_time,edit_time,visit_time FROM user WHERE id = :user_id');
+        $this->db->bind(':user_id',$user_id);
+        $this->db->execute();
+        $dataset = $this->db->single();
 
-    public function changePassword($cid,$oldpassword,$newpassword){
-    	$this->db->query('UPDATE member SET Password = :newpassword WHERE ID_CARD = :cid AND password = :oldpassword');
-		$this->db->bind(':cid',$cid);
-		$this->db->bind(':newpassword',$newpassword);
-        $this->db->bind(':oldpassword',$oldpassword);
-		$this->db->execute();
+        $this->id             = $dataset['id'];
+        $this->username       = $dataset['username'];
+        $this->name           = $dataset['name'];
+        $this->email           = $dataset['email'];
+        $this->company           = $dataset['company'];
+        $this->position           = $dataset['position'];
+        $this->password       = $dataset['password'];
+        $this->salt           = $dataset['salt'];
+        $this->permission     = $dataset['permission'];
+        $this->ip             = $dataset['ip'];
+        $this->type           = $dataset['type'];
+        $this->status         = $dataset['status'];
+        $this->register_time  = $dataset['register_time'];
+        $this->visit_time     = $dataset['visit_time'];
+        $this->edit_time     = $dataset['edit_time'];
+
+         if($this->permission == 'admin'){
+            $this->app_limit = 10;
+        }else{
+            $this->app_limit = 3;
+        }
+    }
+
+    public function register($name,$email,$password){
+        $email      = filter_var(strip_tags(trim($email)),FILTER_SANITIZE_EMAIL);
+        // Random password if password is empty value
+        $salt       = hash('sha512',uniqid(mt_rand(1,mt_getrandmax()),true));
+        // Create salted password
+        $password   = hash('sha512',$password.$salt);
+
+        if($this->already($username,$name)){
+            
+            $this->db->query('INSERT INTO user(email,name,password,salt,permission,ip,register_time,status) VALUE(:email,:name,:password,:salt,:permission,:ip,:register_time,:status)');
+            $this->db->bind(':email'        ,$email);
+            $this->db->bind(':name'         ,$name);
+            $this->db->bind(':password'     ,$password);
+            $this->db->bind(':salt'         ,$salt);
+            $this->db->bind(':permission'   ,'guest');
+            $this->db->bind(':ip'           ,$this->db->GetIpAddress());
+            $this->db->bind(':register_time',date('Y-m-d H:i:s'));
+            $this->db->bind(':status'       ,'disable');
+            $this->db->execute();
+
+            $user_id = $this->db->lastInsertId();
+
+        }else{
+            return 0;
+        }
+
+        return $user_id;
+    }
+    public function already($username,$name){
+        $this->db->query('SELECT id FROM user WHERE username = :username OR name = :name');
+        $this->db->bind(':username',$username);
+        $this->db->bind(':name',$name);
+        $this->db->execute();
+        $dataset = $this->db->single();
+
+        if(empty($dataset['id'])){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public function sec_session_start() {
@@ -69,10 +131,10 @@ class User{
 
     public function loginChecking(){
         // READ COOKIES
-        // if(!empty($_COOKIE['user_id']) && empty($_SESSION['user_id']))
-        // 	$_SESSION['user_id'] = $_COOKIE['user_id'];
-        // if(!empty($_COOKIE['login_string']) && empty($_SESSION['login_string']))
-        // 	$_SESSION['login_string'] = $_COOKIE['login_string'];
+        if(!empty($_COOKIE['user_id']) && empty($_SESSION['user_id']))
+            $_SESSION['user_id'] = $_COOKIE['user_id'];
+        if(!empty($_COOKIE['login_string']) && empty($_SESSION['login_string']))
+            $_SESSION['login_string'] = $_COOKIE['login_string'];
 
         // Check if all session variables are set
         if(isset($_SESSION['user_id'],$_SESSION['login_string'])){
@@ -81,17 +143,15 @@ class User{
             $login_string   = $_SESSION['login_string'];
 
             // Get the user-agent string of the user.
-           // $user_browser   = $_SERVER['HTTP_USER_AGENT'];
+            $user_browser   = $_SERVER['HTTP_USER_AGENT'];
 
-            $userid = $this->Decrypt($user_id);
-
-            $this->get($userid);
+            $this->getUser($this->Decrypt($user_id));
 
             if(!empty($this->id)){
-                $login_check = hash('sha512',$this->password);
-
+                $login_check = hash('sha512',$this->password.$user_browser);
 
                 if($login_check == $login_string){
+                    $this->updateVisitTime($this->id);
                     return true;
                 }else{
                     return false;
@@ -104,26 +164,21 @@ class User{
         }
     }
 
-    public function login($tel,$password){
-            // $email          = filter_var(strip_tags(trim($email)),FILTER_SANITIZE_EMAIL);
-
-        $tel            = trim($tel);
+    public function login($username,$password){
+        $username       = strip_tags(trim($username));
         $password       = trim($password);
-        $password       = hash('sha512',$password);
         $cookie_time    = time() + 3600 * 24 * 12; // Cookie Time (1 year)
 
         // GET USER DATA BY EMAIL
-        $this->db->query('SELECT id,tel,pass FROM user WHERE tel = :tel');
-        $this->db->bind(':tel',$tel);
+        $this->db->query('SELECT id,password,salt FROM user WHERE email = :username');
+        $this->db->bind(':username',$username);
         $this->db->execute();
         $user_data = $this->db->single();
 
-
-
-        if(true){
-            if($password == $user_data['pass']){
+        if($this->checkBrute($user_data['id'])){
+            if((hash('sha512',$password.$user_data['salt']) == $user_data['password'])){
                 // PASSWORD IS CORRECT!
-               // $user_browser = $_SERVER['HTTP_USER_AGENT'];
+                $user_browser = $_SERVER['HTTP_USER_AGENT'];
 
                 // XSS protection as we might print this value
                 $user_id = preg_replace("/[^0-9]+/",'',$user_data['id']);
@@ -133,44 +188,44 @@ class User{
                 // SET SESSION AND COOKIE
                 $_SESSION['user_id'] = $user_id;
                 setcookie('user_id',$user_id,$cookie_time);
-                $_SESSION['login_string'] = hash('sha512',$user_data['pass']);
-                setcookie('login_string',hash('sha512',$user_data['pass']),$cookie_time);
+                $_SESSION['login_string'] = hash('sha512',$user_data['password'].$user_browser);
+                setcookie('login_string',hash('sha512',$user_data['password'].$user_browser),$cookie_time);
 
                 // Save log to attempt : [successful]
-                // parent::recordAttempt($user_data['id'],'successful');
+                // $this->db->recordAttempt($user_data['id'],'successful');
 
                 return 1; // LOGIN SUCCESS
             }else{
                 // Save log to attempt : [fail]
-                // if(!empty($user_data['id'])){
-                //  $this->recordAttempt($user_data['id']); // Login failure!
-                // }
+                if(!empty($user_data['id'])){
+                    $this->recordAttempt($user_data['id']); // Login failure!
+                }
 
                 return 0; // LOGIN FAIL!
             }
         }else{
             return -1; // ACCOUNT LOCKED!
-        }    }
+        }
+        // Note: crypt — One-way string hashing (http://php.net/manual/en/function.crypt.php)
+    }
 
-    // private function Encrypt($data){
-    //     $password = $this->cookie_salt;
-    //     $salt = substr(md5(mt_rand(), true), 8);
-    //     $key = md5($password . $salt, true);
-    //     $iv  = md5($key . $password . $salt, true);
-    //     $ct = mcrypt_encrypt(MCRYPT_RIJNDAEL_128, $key, $data, MCRYPT_MODE_CBC, $iv);
-    //     return base64_encode('Salted__' . $salt . $ct);
-    // }
+    private function checkBrute($user_id){
+        // First step clear attempt log.
+        // $this->db->clearAttempt();
+        // return ($this->db->countAttempt($user_id) >= 5 ? true : false);
 
-    // private function Decrypt($data){
-    //     $password = $this->cookie_salt;
-    //     $data = base64_decode($data);
-    //     $salt = substr($data, 8, 8);
-    //     $ct   = substr($data, 16);
-    //     $key = md5($password . $salt, true);
-    //     $iv  = md5($key . $password . $salt, true);
-    //     $pt = mcrypt_decrypt(MCRYPT_RIJNDAEL_128, $key, $ct, MCRYPT_MODE_CBC, $iv);
-    //     return $pt;
-    // }
+        return true;
+    }
+
+    private function userAlready($email){
+        $this->db->query('SELECT id FROM user WHERE email = :email');
+        $this->db->bind(':email',$email);
+        $this->db->execute();
+        $dataset = $this->db->single();
+        
+        if(empty($dataset['id'])) return true;
+        else return false;
+    }
 
     private function Encrypt($data){
         $key = $this->key;
@@ -188,89 +243,54 @@ class User{
         return openssl_decrypt($encrypted_data, 'aes-256-cbc', $encryption_key, 0, $iv);
     }
 
-    public function register($tel,$password,$name,$lastname){
 
-        
-      
+    // LOGIN ATTEMPTS
+    private function recordAttempt($user_id){
+        $this->db->query('INSERT INTO login_attempts(user_id,time,ip) VALUE(:user_id,:time,:ip)');
+        $this->db->bind(':user_id' ,$user_id);
+        $this->db->bind(':time'     ,time());
+        $this->db->bind(':ip'       ,$this->db->GetIpAddress());
 
-        $password   = hash('sha512',$password);
-
-        if($this->userAlready($tel)){
-           $this->db->query('
-                INSERT INTO `mydb`.`user` (`tel`, `pass`, `name`, `last`, `time`) 
-                VALUES ( :tel, :password, :name, :lastname, :register_time);');
-            $this->db->bind(':tel'         ,$tel);
-            $this->db->bind(':password'    ,$password);
-            $this->db->bind(':name'        ,$name);
-            $this->db->bind(':lastname'    ,$lastname);
-            $this->db->bind(':register_time' ,date('Y-m-d H:i:s'));
-            $this->db->execute();
-
-            $user_id = $this->db->lastInsertId();
-
-            $userTel = $this->getTelfromId($user_id);
-
-        }else{
-            return 0;
-        }
-
-        return $userTel;
-    }
-    private function userAlready($tel){
-
-        $this->db->query('SELECT * FROM `user` WHERE tel = :tel');   
-        $this->db->bind(':tel',$tel); 
         $this->db->execute();
-        $dataset = $this->db->single();
-        
-        if(empty($dataset['tel'])) return true;
-        else return false;
+        return $this->db->lastInsertId();
     }
-     public function getTelfromId($id){
+    // public function countAttempt($member_id){
+    //  $this->db->query('SELECT COUNT(member_id) total FROM login_attempts WHERE (member_id = :member_id) AND (status = "fail")');
+    //  $this->db->bind(':member_id', $member_id);
+    //  $this->db->execute();
+    //  $data = $this->db->single();
+    //  return $data['total'];
+    // }
 
-        $this->db->query('SELECT tel FROM `user` WHERE id = :id');   
-        $this->db->bind(':id',$id); 
+    private function clearAttempt(){
+        $this->db->query('DELETE FROM login_attempts WHERE time < :limittime');
+        $this->db->bind(':limittime', time() - 60);
         $this->db->execute();
-        $dataset = $this->db->single();
-        
-        return ($dataset['tel']); 
     }
-     public function getIdfromTel($tel){
 
-        $this->db->query('SELECT id FROM `user` WHERE tel = :tel');   
-        $this->db->bind(':tel',$tel); 
+    public function editProfile($user_id,$username,$email,$name,$company,$position){
+        $this->db->query('UPDATE user SET username = :username,email = :email, name = :name,company = :company,position = :position, edit_time = :edit_time WHERE id = :user_id');
+        $this->db->bind(':user_id'  ,$user_id);
+        $this->db->bind(':username' ,$username);
+        $this->db->bind(':email'    ,$email);
+        $this->db->bind(':name'     ,$name);
+        $this->db->bind(':company'  ,$company);
+        $this->db->bind(':position' ,$position);
+        $this->db->bind(':edit_time' ,date('Y-m-d H:i:s'));
         $this->db->execute();
-        $dataset = $this->db->single();
-        
-        return ($dataset['id']); 
     }
-    public function getId(){
-            return $this->id;
-    }
-    public function getPassfromId($id){
+    public function changePassword($user_id,$newpassword){
+        // Random password if password is empty value
+        $salt = hash('sha512',uniqid(mt_rand(1,mt_getrandmax()),true));
+        // Create salted password
+        $password   = hash('sha512',$newpassword.$salt);
 
-        $this->db->query('SELECT * FROM `user` WHERE tel = :id');   
-        $this->db->bind(':id',$id); 
+        $this->db->query('UPDATE user SET password = :password, salt = :salt, edit_time = :edit_time WHERE id = :user_id');
+        $this->db->bind(':user_id' ,$user_id);
+        $this->db->bind(':password' ,$password);
+        $this->db->bind(':salt' ,$salt);
+        $this->db->bind(':edit_time' ,date('Y-m-d H:i:s'));
         $this->db->execute();
-        $dataset = $this->db->single();
-        return $dataset['pass'];
     }
-
-  //   public function listContent($article_id){
-  //   	$this->db->query('SELECT * FROM content WHERE article_id = :article_id AND status = "active" ORDER BY position ASC');
-		// $this->db->bind(':article_id',$article_id);
-		// $this->db->execute();
-		// $dataset = $this->db->resultset();
-
-		// return $dataset;
-  //   }
-
-  //   public function create($title){
-  //   	$this->db->query('INSERT INTO article(title,create_time) VALUE(:title,:create_time)');
-		// $this->db->bind(':title',$title);
-		// $this->db->bind(':create_time',date('Y-m-d H:i:s'));
-		// $this->db->execute();
-		// $this->db->lastInsertId();
-  //   }
 }
 ?>

@@ -29,16 +29,19 @@ require_once 'autoload.php';
 		</div>
 	</div>
 
-	<div class="form">
+	<form class="form" action="javascript:register();">
 		<label for="phone">เบอร์โทรศัพท์</label>
 		<input type="text" id="phone" placeholder="เบอร์โทรศัพท์" autofocus>
 		<label for="password">รหัสผ่าน</label>
 		<input type="text" id="password" placeholder="รหัสผ่าน">
 
 		<button type="btn">เข้าสู่ระบบ</button>
-	</div>
+	</form>
 
 	<div class="note">หากคุณยังไม่เคยเข้าใช้งาน กรุณาไปที่ <a href="register.php">ลงทะเบียนใหม่<i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></div>
 </div>
+
+<script type="text/javascript" src="js/lib/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/user.js"></script>
 </body>
 </html>
