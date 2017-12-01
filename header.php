@@ -13,9 +13,5 @@
 
 	<a href="logout.php" class="menu btn-logout" target="_parent">ออกจากระบบ<i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
 
-<?php
-
-}
-	?>
-
-	</header>
+<?php }?>
+</header>

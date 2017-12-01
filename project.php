@@ -8,6 +8,9 @@ if (!$user_online) {
 }
 $project_id = $_GET['id'];
 $activity = new Activity();
+$project = new Project();
+
+$project_data = $project->get($project_id);
 $activities = $activity->listAll($project_id);
 ?>
 
@@ -32,6 +35,8 @@ $activities = $activity->listAll($project_id);
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+<a href="index.php">INDEX</a>
+<pre><?php print_r($project_data); ?></pre>
 <pre><?php print_r($activities); ?></pre>
 <script type="text/javascript" src="js/lib/jquery-3.2.1.min.js"></script>
 </body>
