@@ -34,7 +34,7 @@ $projects = $project->listWithUser($user_id);
 		<?php if(count($projects) > 0){?>
 		<div class="text">โครงการของคุณ <?php echo count($projects);?> รายการ</div>
 		<?php }?>
-		<div class="btn" id="btnCreate"><i class="fa fa-plus" aria-hidden="true"></i>เพิ่มรายงานใหม่</div>
+		<div class="btn" id="btnCreate"><i class="fa fa-plus" aria-hidden="true"></i>เพิ่มโครงการ</div>
 	</div>
 
 	<?php if(count($projects) > 0){?>
@@ -50,21 +50,21 @@ $projects = $project->listWithUser($user_id);
 	<?php }?>
 </div>
 
-<form action="category.process.php" class="form-dialog" id="dialogForm" method="POST" enctype="multipart/form-data">
+<form action="project.process.php" class="form-dialog" id="dialogForm" method="POST" enctype="multipart/form-data">
 	<div id="formProgress"></div>
 	<div class="topic">
-		<span class="text">หมวดหมู่</span>
+		<span class="text">โครงการ</span>
 		<span class="btn-close-dialog" id="btnCloseDialog"><i class="fa fa-times" aria-hidden="true"></i></span>
 	</div>
 
-	<label for="name">ชื่อหมวดหมู่</label>
+	<label for="name">ชื่อโครงการ</label>
 	<input type="text" name="name" id="name" placeholder="Name">
 
 	<label for="description">รายละเอียด</label>
 	<input type="text" name="desc" id="desc" placeholder="Description">
 
-	<input type="hidden" name="category_id" id="category_id">
-	<button id="btnSubmit" type="submit">สร้าง</button>
+	<input type="hidden" name="project_id" id="project_id">
+	<button id="btnSubmit" type="submit">สร้างโครงการ</button>
 </form>
 <script type="text/javascript" src="js/lib/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="js/lib/jquery-form.min.js"></script>

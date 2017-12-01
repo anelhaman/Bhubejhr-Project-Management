@@ -5,7 +5,7 @@
 			<span>รหัส <?php echo $var['project_id'];?></span>
 			<span><?php echo $var['project_create_time'];?></span>
 		</p>
-		<p>ผ่านมาแล้วสำหรับ "เดือนพฤศจิกายน" ครบสี่เดือนพอดีกับการทำงาน Freelance เต้นกินรำกินบนเส้นสายงานออกแบบ</p>
+		<p><?php echo $var['project_description'];?></p>
 	</div>
 	<div class="counter"><?php echo number_format($var['project_total_activity']);?></div>
 </a>
