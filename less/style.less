@@ -822,16 +822,40 @@
 	float: left;
 	display: inline-block;
 
-	h1{
+	.head{
 		width: 100%;
-		margin: 4% 0%;
-		margin-bottom: 2%;
+		margin: 2% 0%;
 		float: left;
 		display: inline-block;
-		font-size: 2em;
-		font-weight: normal;
-		color: #999999;
+		line-height: 1em;
+
+		.text{
+			float: left;
+			display: inline-block;
+			font-size: 2em;
+			padding: 1.5% 0%;
+			color: #333333;
+		}
+		.btn{
+			float: right;
+			display: inline-block;
+			background: @primary_color;
+			color: #FFFFFF;
+			padding: 1.5% 2%;
+			border-radius: 3px;
+			font-weight: bold;
+
+			&:hover{
+				cursor: pointer;
+			}
+
+			i{
+				margin-right: 15px;
+				font-size: 0.9em;
+			}
+		}
 	}
+
 	.empty{
 		width: 100%;
 		padding: 20% 0%;

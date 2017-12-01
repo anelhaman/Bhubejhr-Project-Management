@@ -967,15 +967,35 @@ body.loginBG {
   float: left;
   display: inline-block;
 }
-.list-container h1 {
+.list-container .head {
   width: 100%;
-  margin: 4% 0%;
-  margin-bottom: 2%;
+  margin: 2% 0%;
+  float: left;
+  display: inline-block;
+  line-height: 1em;
+}
+.list-container .head .text {
   float: left;
   display: inline-block;
   font-size: 2em;
-  font-weight: normal;
-  color: #999999;
+  padding: 1.5% 0%;
+  color: #333333;
+}
+.list-container .head .btn {
+  float: right;
+  display: inline-block;
+  background: #004d40;
+  color: #FFFFFF;
+  padding: 1.5% 2%;
+  border-radius: 3px;
+  font-weight: bold;
+}
+.list-container .head .btn:hover {
+  cursor: pointer;
+}
+.list-container .head .btn i {
+  margin-right: 15px;
+  font-size: 0.9em;
 }
 .list-container .empty {
   width: 100%;

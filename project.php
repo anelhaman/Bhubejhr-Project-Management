@@ -55,8 +55,10 @@ $activities = $activity->listAll($project_id);
 	<?php }?>
 </div>
 
-<pre><?php print_r($activities); ?></pre>
-
 <script type="text/javascript" src="js/lib/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/lib/jquery-form.min.js"></script>
+<script type="text/javascript" src="js/lib/autosize.js"></script>
+<script type="text/javascript" src="js/init.js"></script>
+<script type="text/javascript" src="js/category.js"></script>
 </body>
 </html>
