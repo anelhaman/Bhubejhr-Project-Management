@@ -18,7 +18,7 @@ class Project{
     }
 
     public function listWithUser($user_id){
-		$this->db->query('SELECT project.id project_id,project.name project_name,project.owner project_owner_id,project.time project_craete_time,(SELECT COUNT(id) FROM activity WHERE projectid = project.id) project_total_activity FROM project AS project WHERE owner = :user_id');
+		$this->db->query('SELECT project.id project_id,project.name project_name,project.owner project_owner_id,project.time project_create_time,(SELECT COUNT(id) FROM activity WHERE projectid = project.id) project_total_activity FROM project AS project WHERE owner = :user_id');
 		$this->db->bind(':user_id',$user_id);
 		$this->db->execute();
 		$dataset = $this->db->resultset();
