@@ -11,6 +11,7 @@ $(document).ready(function(){
 	$btnCreate 			= $('#btnCreate');
 	$btnSubmit 			= $('#btnSubmit');
 	$formProgress 		= $('#formProgress');
+	$nameinput 			= $('#name');
 
 	$dialogForm.ajaxForm({
         beforeSubmit: function(){

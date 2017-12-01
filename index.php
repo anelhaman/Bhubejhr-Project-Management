@@ -57,13 +57,13 @@ $projects = $project->listWithUser($user_id);
 		<span class="btn-close-dialog" id="btnCloseDialog"><i class="fa fa-times" aria-hidden="true"></i></span>
 	</div>
 
-	<label for="name">ชื่อโครงการ</label>
-	<input type="text" name="name" id="name" placeholder="Name">
+	<label for="project_">ชื่อโครงการ</label>
+	<input type="text" name="name" id="name" placeholder="">
 
-	<label for="description">รายละเอียด</label>
-	<input type="text" name="desc" id="desc" placeholder="Description">
+	<label for="project_desc">รายละเอียด</label>
+	<textarea name="desc" id="desc" placeholder=""></textarea>
 
-	<input type="text" name="project_id" id="project_id" placeholder="ProjectID">
+	<input type="hidden" name="project_id" id="project_id" placeholder="ProjectID">
 	<button id="btnSubmit" type="submit">สร้างโครงการ</button>
 </form>
 

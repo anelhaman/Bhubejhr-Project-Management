@@ -27,6 +27,8 @@ $activities = $activity->listAll($project_id);
 
 <title><?php echo TITLE;?></title>
 
+<base href="<?php echo DOMAIN;?>">
+
 <link rel="stylesheet" type="text/css" href="css/style.css"/>
 <link rel="stylesheet" type="text/css" href="plugin/font-awesome/css/font-awesome.min.css"/>
 </head>

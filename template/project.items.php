@@ -1,5 +1,5 @@
 <div class="project-items" data-id="<?php echo $var['project_id'];?>">
-	<a href="project.php?id=<?php echo $var['project_id'];?>" class="detail">
+	<a href="project/<?php echo $var['project_id'];?>" class="detail">
 		<h2><?php echo $var['project_name'];?></h2>
 		<p>
 			<span>รหัส <?php echo $var['project_id'];?></span>

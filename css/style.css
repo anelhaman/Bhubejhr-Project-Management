@@ -790,7 +790,8 @@ body.loginBG {
 .form-dialog label:hover {
   cursor: pointer;
 }
-.form-dialog input[type='text'] {
+.form-dialog input[type='text'],
+.form-dialog textarea {
   width: 100%;
   float: left;
   display: inline-block;
@@ -802,12 +803,15 @@ body.loginBG {
   padding: 1% 0px;
   margin-bottom: 5%;
   color: #666666;
+  resize: none;
 }
-.form-dialog input[type='text']:focus {
+.form-dialog input[type='text']:focus,
+.form-dialog textarea:focus {
   color: #333333;
   border-bottom: 1px solid #333333;
 }
-.form-dialog input[type='text']:hover {
+.form-dialog input[type='text']:hover,
+.form-dialog textarea:hover {
   cursor: pointer;
 }
 .form-dialog button {
