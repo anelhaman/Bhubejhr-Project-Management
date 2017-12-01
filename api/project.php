@@ -33,12 +33,11 @@ switch ($_SERVER['REQUEST_METHOD']){
     	break;
     case 'POST':
     	switch ($_POST['request']){
-			// case 'create':
-			// 	$name = $_POST['name'];
-			// 	$category_id = $category->create($name);
-			// 	$returnObject['category_id'] = $category_id;
-			// 	$returnObject['message'] = 'Category created';
-			// 	break;
+			case 'delete':
+				$project_id = $_POST['project_id'];
+				$project->delete($project_id,$user->id);
+				$returnObject['message'] = 'Project deleted';
+				break;
 			default:
 				$returnObject['message'] = 'POST API Not found!';
 			break;

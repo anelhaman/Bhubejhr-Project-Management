@@ -29,6 +29,13 @@ class Project{
 		$this->db->execute();
 	}
 
+	public function delete($project_id,$user_id){
+		$this->db->query('DELETE FROM project WHERE id = :project_id AND user_id = :user_id');
+		$this->db->bind(':project_id',$project_id);
+		$this->db->bind(':user_id',$user_id);
+		$this->db->execute();
+	}
+
     public function get($project_id){
     	$this->db->query('SELECT project.id project_id,project.name project_name,project.description project_description,project.user_id project_user_id,project.create_time project_craete_time,(SELECT COUNT(id) FROM activity WHERE projectid = project.id) project_total_activity FROM project AS project WHERE project.id = :project_id');
 		$this->db->bind(':project_id',$project_id);
