@@ -8,7 +8,7 @@ if (!$user_online) {
 }
 
 $project = new Project();
-$projects = $project->listWithUser($user_id);
+$projects = $project->listWithUser($user->id);
 ?>
 
 <!DOCTYPE html>

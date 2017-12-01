@@ -140,7 +140,7 @@ body {
   background: #eeeeee;
   overflow-x: hidden;
 }
-body.registerBG {
+body.loginBG {
   background: #002e26;
 }
 .bounce {
@@ -838,127 +838,6 @@ body.registerBG {
   color: #999999;
   margin-top: 25%;
 }
-.login {
-  width: 20%;
-  padding: 2%;
-  margin: 10% 38%;
-  float: left;
-  display: inline-block;
-  background: #FFFFFF;
-  box-shadow: 0px 2px 40px rgba(0, 0, 0, 0.5);
-  border-radius: 3px;
-}
-.login a.back-toggle {
-  position: fixed;
-  top: 0;
-  left: 0;
-  color: #FFFFFF;
-  padding: 18px 2%;
-  height: 14px;
-  text-decoration: none;
-}
-.login a.back-toggle i {
-  margin-right: 20px;
-}
-.login .welcome {
-  width: 100%;
-  float: left;
-  display: inline-block;
-}
-.login .welcome .logo {
-  width: 20%;
-  margin-right: 80%;
-  float: left;
-  display: inline-block;
-  margin-bottom: 5%;
-}
-.login .welcome .logo img {
-  width: 100%;
-  float: left;
-  display: inline-block;
-}
-.login .welcome .head {
-  width: 100%;
-  float: left;
-  display: inline-block;
-}
-.login .welcome .head h1 {
-  font-size: 1.4em;
-  line-height: 1.3em;
-  color: #333333;
-}
-.login .welcome .head .ver {
-  font-size: 0.6em;
-  line-height: 1.3em;
-  margin-bottom: 2%;
-  color: #004d40;
-}
-.login .welcome .head p {
-  font-size: 0.75em;
-  line-height: 1.3em;
-  color: #666666;
-}
-.login .form {
-  width: 100%;
-  float: left;
-  display: inline-block;
-  border-top: 1px solid #EEEEEE;
-  padding-top: 7%;
-  margin-top: 7%;
-}
-.login .form p {
-  font-size: 0.8em;
-  margin-bottom: 5%;
-  color: #666666;
-}
-.login .form p a {
-  color: #004d40;
-  font-weight: bold;
-}
-.login .form .inputtext {
-  width: 100%;
-  padding: 4% 0%;
-  float: left;
-  display: inline-block;
-  font-size: 1em;
-  line-height: 1.3em;
-  border: 0px;
-  border-bottom: 1px solid #BBBBBB;
-  margin-bottom: 5%;
-  color: #999999;
-}
-.login .form .inputtext:hover {
-  cursor: pointer;
-}
-.login .form .inputtext:focus {
-  color: #333333;
-  border-bottom: 1px solid #333333;
-}
-.login .form .btn-submit {
-  float: right;
-  display: inline-block;
-  font-size: 1em;
-  line-height: 1em;
-  padding: 10px 20px;
-  border: 0px;
-  margin-top: 5%;
-  background: #004d40;
-  color: #FFFFFF;
-  border-radius: 3px;
-  font-weight: bold;
-}
-.login .form .btn-submit i {
-  margin-left: 10px;
-}
-.login .form .btn-submit.-loading {
-  background: transparent;
-  color: #999999;
-  font-weight: normal;
-  font-style: italic;
-}
-.login .form .btn-submit:hover {
-  cursor: pointer;
-}
 .list-container {
   width: 70%;
   margin: 0% 15%;
@@ -1177,46 +1056,46 @@ body.registerBG {
   font-size: 0.8em;
   color: #666666;
 }
-.register {
+.login {
   width: 30%;
   margin: 0% 35%;
   margin-top: 5%;
   float: left;
   display: inline-block;
 }
-.register .head {
+.login .head {
   width: 100%;
   float: left;
   display: inline-block;
   margin-bottom: 10%;
 }
-.register .head .logo {
+.login .head .logo {
   width: 15%;
   float: left;
   display: inline-block;
 }
-.register .head .logo img {
+.login .head .logo img {
   width: 100%;
   float: left;
   display: inline-block;
 }
-.register .head .text {
+.login .head .text {
   width: 80%;
   margin-left: 5%;
   float: right;
   display: inline-block;
 }
-.register .head .text h1 {
+.login .head .text h1 {
   color: #FFFFFF;
   font-size: 1.2em;
 }
-.register .head .text p {
+.login .head .text p {
   color: #66948c;
   font-size: 0.8em;
   letter-spacing: 1px;
   line-height: 1.3em;
 }
-.register .form {
+.login .form {
   width: 80%;
   padding: 10%;
   float: left;
@@ -1225,18 +1104,18 @@ body.registerBG {
   box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.3);
   border-radius: 5px;
 }
-.register .form label {
+.login .form label {
   width: 100%;
   float: left;
   display: inline-block;
   font-size: 0.9em;
   color: #002e26;
 }
-.register .form label:hover {
+.login .form label:hover {
   cursor: pointer;
 }
-.register .form input[type='text'],
-.register .form textarea {
+.login .form .inputtext,
+.login .form textarea {
   width: 100%;
   float: left;
   display: inline-block;
@@ -1250,16 +1129,16 @@ body.registerBG {
   color: #666666;
   resize: none;
 }
-.register .form input[type='text']:focus,
-.register .form textarea:focus {
+.login .form .inputtext:focus,
+.login .form textarea:focus {
   color: #333333;
   border-bottom: 1px solid #333333;
 }
-.register .form input[type='text']:hover,
-.register .form textarea:hover {
+.login .form .inputtext:hover,
+.login .form textarea:hover {
   cursor: pointer;
 }
-.register .form button {
+.login .form button {
   float: right;
   display: inline-block;
   background: #FF5722;
@@ -1270,11 +1149,11 @@ body.registerBG {
   padding: 15px 30px;
   border-radius: 5px;
 }
-.register .form button:hover {
+.login .form button:hover {
   cursor: pointer;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
 }
-.register .note {
+.login .note {
   width: 100%;
   float: left;
   display: inline-block;
@@ -1283,14 +1162,14 @@ body.registerBG {
   margin-top: 10%;
   font-size: 1em;
 }
-.register .note a {
+.login .note a {
   color: #FFFFFF;
   text-decoration: none;
 }
-.register .note a i {
+.login .note a i {
   margin-left: 5px;
 }
-.register .note a:hover {
+.login .note a:hover {
   text-decoration: underline;
 }
 #progressbar {

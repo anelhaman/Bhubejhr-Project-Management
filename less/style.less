@@ -675,146 +675,6 @@
 	color: #999999;
 	margin-top: 25%;
 }
-
-.login{
-	width: 20%;
-	padding: 2%;
-	margin: 10% 38%;
-	float: left;
-	display: inline-block;
-	background: #FFFFFF;
-	box-shadow: 0px 2px 40px rgba(0,0,0,0.5);
-	border-radius: 3px;
-
-	a.back-toggle{
-		position: fixed;
-		top: 0;
-		left: 0;
-		color: #FFFFFF;
-		padding: 18px 2%;
-		height: 14px;
-		text-decoration: none;
-
-		i{
-			margin-right: 20px;
-		}
-	}
-
-	.welcome{
-		width: 100%;
-		float: left;
-		display: inline-block;
-
-		.logo{
-			width: 20%;
-			margin-right: 80%;
-			float: left;
-			display: inline-block;
-			margin-bottom: 5%;
-
-			img{
-				width: 100%;
-				float: left;
-				display: inline-block;
-			}
-		}
-		.head{
-			width: 100%;
-			float: left;
-			display: inline-block;
-
-			h1{
-				font-size: 1.4em;
-				line-height: 1.3em;
-				color: #333333;
-			}
-
-			.ver{
-				font-size: 0.6em;
-				line-height: 1.3em;
-				margin-bottom: 2%;
-				color: @primary_color;
-			}
-
-			p{
-				font-size: 0.75em;
-				line-height: 1.3em;
-				color: #666666;
-			}
-		}
-	}
-	.form{
-		width: 100%;
-		float: left;
-		display: inline-block;
-		border-top: 1px solid #EEEEEE;
-		padding-top: 7%;
-		margin-top: 7%;
-
-		p{
-			font-size: 0.8em;
-			margin-bottom: 5%;
-			color: #666666;
-
-			a{
-				color: @primary_color;
-				font-weight: bold;
-			}
-		}
-
-		.inputtext{
-			width: 100%;
-			padding: 4% 0%;
-			float: left;
-			display: inline-block;
-			font-size: 1em;
-			line-height: 1.3em;
-			border: 0px;
-			border-bottom: 1px solid #BBBBBB;
-			margin-bottom: 5%;
-			color: #999999;
-
-			&:hover{
-				cursor: pointer;
-			}
-
-			&:focus{
-				color: #333333;
-				border-bottom: 1px solid #333333;
-			}
-		}
-
-		.btn-submit{
-			float: right;
-			display: inline-block;
-			font-size: 1em;
-			line-height: 1em;
-			padding: 10px 20px;
-			border: 0px;
-			margin-top: 5%;
-			background: @primary_color;
-			color: #FFFFFF;
-			border-radius: 3px;
-			font-weight: bold;
-
-			i{
-				margin-left: 10px;
-			}
-
-			&.-loading{
-				background: transparent;
-				color: #999999;
-				font-weight: normal;
-				font-style: italic;
-			}
-
-			&:hover{
-				cursor: pointer;
-			}
-		}
-	}
-}
-
 .list-container{
 	width: 70%;
 	margin: 0% 15%;
@@ -1052,7 +912,7 @@
 	}
 }
 
-.register{
+.login{
 	width: 30%;
 	margin: 0% 35%;
 	margin-top: 5%;
@@ -1116,7 +976,7 @@
 			}
 		}
 
-		input[type='text'], textarea{
+		.inputtext, textarea{
 			width: 100%;
 			float: left;
 			display: inline-block;

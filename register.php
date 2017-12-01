@@ -24,8 +24,8 @@ $currentPage = 'register';
 <link rel="stylesheet" type="text/css" href="css/style.css"/>
 <link rel="stylesheet" type="text/css" href="plugin/font-awesome/css/font-awesome.min.css"/>
 </head>
-<body class="registerBG">
-<div class="register">
+<body class="loginBG">
+<div class="login">
 	<div class="head">
 		<div class="logo">
 			<img src="image/logo.png" alt="">
@@ -38,14 +38,14 @@ $currentPage = 'register';
 
 	<form class="form" action="javascript:register();">
 		<label for="fullname">ชื่อ-นามสกุล</label>
-		<input type="text" id="fullname" placeholder="ชื่อ-นามสกุล" autofocus>
+		<input type="text" class="inputtext" id="fullname" placeholder="ชื่อ-นามสกุล" autofocus>
 		<label for="username">เบอร์โทรศัพท์</label>
-		<input type="text" id="username" placeholder="เบอร์โทรศัพท์">
+		<input type="phone" class="inputtext" id="username" placeholder="เบอร์โทรศัพท์">
 		<label for="bio">ชื่อฝ่ายและแผนก</label>
 		<textarea id="bio" placeholder="ชื่อฝ่ายและแผนก"></textarea>
 		<label for="password">รหัสผ่าน</label>
-		<input type="text" id="password" placeholder="รหัสผ่าน">
-		<input type="text" id="sign" name="sign" value="<?php echo $signature->generateSignature('register',SECRET_KEY);?>">
+		<input type="password" class="inputtext" id="password" placeholder="รหัสผ่าน">
+		<input type="hidden" id="sign" name="sign" value="<?php echo $signature->generateSignature('register',SECRET_KEY);?>">
 
 		<button type="btn">ลงทะเบียน</button>
 	</form>
