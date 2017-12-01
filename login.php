@@ -1,12 +1,5 @@
 <?php
 require_once 'autoload.php';
-
-if($user_online) {
-	header("Location: index.php");
-	exit();
-
-
-}
 ?>
 
 <!DOCTYPE html>
@@ -20,56 +13,32 @@ if($user_online) {
 <meta name="viewport" content="user-scalable=no">
 <meta name="viewport" content="initial-scale=1,maximum-scale=1">
 
-<title><?php echo TITLE;?></title>
-
+<title>ลงทะเบียน</title>
 <link rel="stylesheet" type="text/css" href="css/style.css"/>
-<link rel="stylesheet" href="css/test.css">
 <link rel="stylesheet" type="text/css" href="plugin/font-awesome/css/font-awesome.min.css"/>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="registerBG">
+<div class="register">
+	<div class="head">
+		<div class="logo">
+			<img src="image/logo.png" alt="">
+		</div>
+		<div class="text">
+			<h1>Bhubejhr Project Management</h1>
+			<p>Chaophya Abhaibhubejhr Hospital</p>
+		</div>
+	</div>
 
-<?php include_once'header.php';?>
+	<div class="form">
+		<label for="phone">เบอร์โทรศัพท์</label>
+		<input type="text" id="phone" placeholder="เบอร์โทรศัพท์" autofocus>
+		<label for="password">รหัสผ่าน</label>
+		<input type="text" id="password" placeholder="รหัสผ่าน">
 
+		<button type="btn">เข้าสู่ระบบ</button>
+	</div>
 
-	<div class="container">
-		<form class="form-horizontal" action='checklogin.php' method="POST">
-			<fieldset>
-
-			<!-- Form Name -->
-			<legend>ระบบติดตามโครงการ</legend>
-
-			<!-- Text input-->
-			<div class="form-group">
-			  <label class="col-md-4 control-label" for="username"></label>
-			  <div class="col-md-5">
-			  <input id="username" name="username" type="number" placeholder="กรอกเบอร์โทรศัพท์" class="form-control input-md" required="" value="0957892522">
-
-			  </div>
-			</div>
-
-			<!-- Text input-->
-			<div class="form-group">
-			  <label class="col-md-4 control-label" for="password"></label>
-			  <div class="col-md-5">
-			  <input id="password" name="password" type="password" placeholder="Password" class="form-control input-md" required="">
-
-			  </div>
-			</div>
-
-			<!-- Button (Double) -->
-			<div class="form-group">
-			  <label class="col-md-4 control-label" for="login"></label>
-			  <div class="col-md-8">
-			    <button id="login" name="" class="btn btn-success">Login</button>
-			    <a href="register.php" id="register" name="register" class="btn btn-link">Register</a>
-			  </div>
-			</div>
-
-			</fieldset>
-			</form>
-
-				</div>
-
+	<div class="note">หากคุณยังไม่เคยเข้าใช้งาน กรุณาไปที่ <a href="register.php">ลงทะเบียนใหม่<i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></div>
+</div>
 </body>
 </html>

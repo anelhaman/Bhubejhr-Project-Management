@@ -42,7 +42,7 @@ require_once 'autoload.php';
 		<button type="btn">ลงทะเบียน</button>
 	</div>
 
-	<div class="note">หากคุณเคยลงทะเบียน ไปที่ <a href="login.php">เข้าสู่ระบบ</a></div>
+	<div class="note">หากคุณเคยลงทะเบียน ไปที่ <a href="login.php">เข้าสู่ระบบ<i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></div>
 </div>
 </body>
 </html>

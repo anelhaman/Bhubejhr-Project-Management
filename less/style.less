@@ -1094,20 +1094,6 @@
 			}
 		}
 	}
-
-	.note{
-		width: 100%;
-		float: left;
-		display: inline-block;
-		text-align: center;
-		color: @primary_color_light;
-		margin-top: 5%;
-		font-size: 1em;
-
-		a{
-			color: #FFFFFF;
-		}
-	}
 	
 	.form{
 		width: 80%;
@@ -1157,13 +1143,36 @@
 		button{
 			float: right;
 			display: inline-block;
-			background: @primary_color;
+			background: #FF5722;
 			color: #FFFFFF;
 			border: 0px;
 			font-size: 1em;
 			line-height: 1em;
 			padding: 15px 30px;
 			border-radius: 5px;
+
+			&:hover{
+				cursor: pointer;
+				box-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+			}
+		}
+	}
+
+	.note{
+		width: 100%;
+		float: left;
+		display: inline-block;
+		text-align: center;
+		color: @primary_color_light;
+		margin-top: 10%;
+		font-size: 1em;
+
+		a{
+			color: #FFFFFF;
+			text-decoration: none;
+
+			i{ margin-left: 5px; }
+			&:hover{ text-decoration: underline; }
 		}
 	}
 }

@@ -1216,18 +1216,6 @@ body.registerBG {
   letter-spacing: 1px;
   line-height: 1.3em;
 }
-.register .note {
-  width: 100%;
-  float: left;
-  display: inline-block;
-  text-align: center;
-  color: #66948c;
-  margin-top: 5%;
-  font-size: 1em;
-}
-.register .note a {
-  color: #FFFFFF;
-}
 .register .form {
   width: 80%;
   padding: 10%;
@@ -1274,13 +1262,36 @@ body.registerBG {
 .register .form button {
   float: right;
   display: inline-block;
-  background: #004d40;
+  background: #FF5722;
   color: #FFFFFF;
   border: 0px;
   font-size: 1em;
   line-height: 1em;
   padding: 15px 30px;
   border-radius: 5px;
+}
+.register .form button:hover {
+  cursor: pointer;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+.register .note {
+  width: 100%;
+  float: left;
+  display: inline-block;
+  text-align: center;
+  color: #66948c;
+  margin-top: 10%;
+  font-size: 1em;
+}
+.register .note a {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+.register .note a i {
+  margin-left: 5px;
+}
+.register .note a:hover {
+  text-decoration: underline;
 }
 #progressbar {
   position: fixed;
