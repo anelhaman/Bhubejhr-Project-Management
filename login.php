@@ -1,5 +1,12 @@
 <?php
 require_once 'autoload.php';
+if($user_online){
+	header('Location: index.php');
+	die();
+}
+
+$signature 	= new Signature;
+$currentPage = 'login';
 ?>
 
 <!DOCTYPE html>
@@ -29,11 +36,12 @@ require_once 'autoload.php';
 		</div>
 	</div>
 
-	<form class="form" action="javascript:register();">
-		<label for="phone">เบอร์โทรศัพท์</label>
-		<input type="text" id="phone" placeholder="เบอร์โทรศัพท์" autofocus>
+	<form class="form" action="javascript:login();">
+		<label for="username">เบอร์โทรศัพท์</label>
+		<input type="text" id="username" placeholder="เบอร์โทรศัพท์" autofocus>
 		<label for="password">รหัสผ่าน</label>
 		<input type="text" id="password" placeholder="รหัสผ่าน">
+		<input type="text" id="sign" name="sign" value="<?php echo $signature->generateSignature('login',SECRET_KEY);?>">
 
 		<button type="btn">เข้าสู่ระบบ</button>
 	</form>

@@ -184,11 +184,12 @@ function login(){
 
 function register(){
 	var fullname 	= $('#fullname').val();
-	var email 		= $('#email').val();
+	var username 	= $('#username').val();
 	var password 	= $('#password').val();
+	var bio 		= $('#bio').val();
 	var sign 		= $('#sign').val();
 
-	if(fullname == '' || email == '' || password == '') return false;
+	if(fullname == '' || username == '' || password == '') return false;
 
 	$progressbar.fadeIn(300);
 	$progressbar.width('0%');
@@ -203,8 +204,9 @@ function register(){
 		data:{
 			request     :'register',
 			fullname 	:fullname,
-			email 		:email,
+			username 	:username,
 			password 	:password,
+			bio 		:bio,
 			sign 		:sign,
 		},
 		error: function (request, status, error) {

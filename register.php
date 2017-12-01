@@ -1,5 +1,12 @@
 <?php
 require_once 'autoload.php';
+if($user_online){
+	header('Location: index.php');
+	die();
+}
+
+$signature 	= new Signature;
+$currentPage = 'register';
 ?>
 
 <!DOCTYPE html>
@@ -32,12 +39,13 @@ require_once 'autoload.php';
 	<form class="form" action="javascript:register();">
 		<label for="fullname">ชื่อ-นามสกุล</label>
 		<input type="text" id="fullname" placeholder="ชื่อ-นามสกุล" autofocus>
-		<label for="phone">เบอร์โทรศัพท์</label>
-		<input type="text" id="phone" placeholder="เบอร์โทรศัพท์">
-		<label for="info">ชื่อฝ่ายและแผนก</label>
-		<textarea id="info" placeholder="ชื่อฝ่ายและแผนก"></textarea>
+		<label for="username">เบอร์โทรศัพท์</label>
+		<input type="text" id="username" placeholder="เบอร์โทรศัพท์">
+		<label for="bio">ชื่อฝ่ายและแผนก</label>
+		<textarea id="bio" placeholder="ชื่อฝ่ายและแผนก"></textarea>
 		<label for="password">รหัสผ่าน</label>
 		<input type="text" id="password" placeholder="รหัสผ่าน">
+		<input type="text" id="sign" name="sign" value="<?php echo $signature->generateSignature('register',SECRET_KEY);?>">
 
 		<button type="btn">ลงทะเบียน</button>
 	</form>

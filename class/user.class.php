@@ -13,8 +13,6 @@ class User{
     public $register_time;
     public $visit_time;
     public $edit_time;
-    public $total_app;
-    public $app_limit;
 
     private $password;
     private $salt;
@@ -34,7 +32,7 @@ class User{
     }
 
     public function getUser($user_id){
-        $this->db->query('SELECT id,username,name,email,company,position,password,salt,type,permission,status,ip,register_time,edit_time,visit_time FROM user WHERE id = :user_id');
+        $this->db->query('SELECT id,username,name,email,bio,password,salt,type,permission,status,ip,register_time,edit_time,visit_time FROM user WHERE id = :user_id');
         $this->db->bind(':user_id',$user_id);
         $this->db->execute();
         $dataset = $this->db->single();
@@ -42,9 +40,8 @@ class User{
         $this->id             = $dataset['id'];
         $this->username       = $dataset['username'];
         $this->name           = $dataset['name'];
-        $this->email           = $dataset['email'];
-        $this->company           = $dataset['company'];
-        $this->position           = $dataset['position'];
+        $this->email        = $dataset['email'];
+        $this->bio             = $dataset['bio'];
         $this->password       = $dataset['password'];
         $this->salt           = $dataset['salt'];
         $this->permission     = $dataset['permission'];
@@ -54,16 +51,9 @@ class User{
         $this->register_time  = $dataset['register_time'];
         $this->visit_time     = $dataset['visit_time'];
         $this->edit_time     = $dataset['edit_time'];
-
-         if($this->permission == 'admin'){
-            $this->app_limit = 10;
-        }else{
-            $this->app_limit = 3;
-        }
     }
 
-    public function register($name,$email,$password){
-        $email      = filter_var(strip_tags(trim($email)),FILTER_SANITIZE_EMAIL);
+    public function register($name,$username,$password,$bio){
         // Random password if password is empty value
         $salt       = hash('sha512',uniqid(mt_rand(1,mt_getrandmax()),true));
         // Create salted password
@@ -71,9 +61,10 @@ class User{
 
         if($this->already($username,$name)){
             
-            $this->db->query('INSERT INTO user(email,name,password,salt,permission,ip,register_time,status) VALUE(:email,:name,:password,:salt,:permission,:ip,:register_time,:status)');
-            $this->db->bind(':email'        ,$email);
+            $this->db->query('INSERT INTO user(username,name,bio,password,salt,permission,ip,register_time,status) VALUE(:username,:name,:bio,:password,:salt,:permission,:ip,:register_time,:status)');
+            $this->db->bind(':username'     ,$username);
             $this->db->bind(':name'         ,$name);
+            $this->db->bind(':bio'         ,$bio);
             $this->db->bind(':password'     ,$password);
             $this->db->bind(':salt'         ,$salt);
             $this->db->bind(':permission'   ,'guest');
@@ -170,7 +161,7 @@ class User{
         $cookie_time    = time() + 3600 * 24 * 12; // Cookie Time (1 year)
 
         // GET USER DATA BY EMAIL
-        $this->db->query('SELECT id,password,salt FROM user WHERE email = :username');
+        $this->db->query('SELECT id,password,salt FROM user WHERE username = :username');
         $this->db->bind(':username',$username);
         $this->db->execute();
         $user_data = $this->db->single();

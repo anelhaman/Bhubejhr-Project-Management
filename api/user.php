@@ -1,16 +1,9 @@
 <?php
 require_once '../autoload.php';
-// header('Access-Control-Allow-Origin: *');
 header("Content-type: text/json");
 
-// $apiArgArray = explode('/', substr(@$_SERVER['PATH_INFO'], 1));
-// $headers = getallheaders();
-// $token = $headers['Token'] or ['AuthKey'];
-// $returnObject = (object) array();
 $returnObject = array(
 	"apiVersion"  	=> 1.0,
-	"method" 		=> $_SERVER['REQUEST_METHOD'],
-	// "header"      => $headers,
 	"execute"     	=> floatval(round(microtime(true)-StTime,4)),
 );
 
@@ -34,13 +27,14 @@ switch ($_SERVER['REQUEST_METHOD']){
     	switch ($_POST['request']){
     		case 'register':
 				$fullname 	= $_POST['fullname'];
-				$email 		= $_POST['email'];
+				$username 	= $_POST['username'];
 				$password 	= $_POST['password'];
+				$bio 		= $_POST['bio'];
 
-				$user_id = $user->register($fullname,$email,$password);
+				$user_id = $user->register($fullname,$username,$password,$bio);
 
 				if(true){
-					$state = $user->login($email,$password);
+					$state = $user->login($username,$password);
 				}
 
 				$returnObject['message'] 	= 'New Account Created!';
