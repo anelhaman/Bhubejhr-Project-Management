@@ -1019,6 +1019,7 @@ body.loginBG {
   display: inline-block;
   background: #FFFFFF;
   border-bottom: 1px solid #DDDDDD;
+  position: relative;
 }
 .list-container .project-items .detail {
   width: 85%;
@@ -1048,6 +1049,61 @@ body.loginBG {
   font-size: 3em;
   line-height: 1.7em;
   color: #DDDDDD;
+}
+.list-container .project-items .edit {
+  position: absolute;
+  top: 0;
+  right: 0;
+  line-height: 1em;
+  padding: 1.5% 2%;
+  color: #BBBBBB;
+}
+.list-container .project-items .edit:hover {
+  cursor: pointer;
+  color: #666666;
+}
+.list-container .project-items .edit .edit-menu {
+  position: absolute;
+  top: 85%;
+  right: -15%;
+  width: 120px;
+  padding: 10% 0%;
+  float: left;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 30px rgba(0, 0, 0, 0.3);
+  display: none;
+  z-index: 999;
+  border-radius: 3px;
+}
+.list-container .project-items .edit .edit-menu::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  right: 25%;
+  border: 9px solid transparent;
+  border-bottom-color: #FFFFFF;
+}
+.list-container .project-items .edit .edit-menu .items {
+  width: 70%;
+  padding: 10% 15%;
+  float: left;
+  text-align: left;
+  display: inline-block;
+  border-bottom: 1px solid #F7F7F7;
+}
+.list-container .project-items .edit .edit-menu .items i {
+  margin: 0px;
+  margin-right: 10px;
+}
+.list-container .project-items .edit .edit-menu .items.delete {
+  color: #c0392b;
+}
+.list-container .project-items .edit .edit-menu .items:last-child {
+  border-bottom: 0px;
+}
+.list-container .project-items .edit .edit-menu .items:hover {
+  cursor: pointer;
+  background: #F7F7F7;
 }
 .list-container .report-items {
   width: 96%;

@@ -15,21 +15,16 @@ $returnObject = array(
 // 	exit();
 // }
 
-$category = new Category();
+$project = new Project();
 
 switch ($_SERVER['REQUEST_METHOD']){
 	case 'GET':
 		switch ($_GET['request']){
 			case 'get':
-				$category_id = $_GET['category_id'];
-				$dataset = $category->get($category_id);
+				$project_id = $_GET['project_id'];
+				$dataset	 = $project->get($project_id);
 				$returnObject['data'] = $dataset;
-				$returnObject['message'] = 'get category';
-				break;
-			case 'list_all':
-				$dataset = $category->listAll();
-				$returnObject['dataset'] = $dataset;
-				$returnObject['message'] = 'list all category';
+				$returnObject['message'] = 'get project data';
 				break;
 			default:
 				$returnObject['message'] = 'GET API Not found!';
@@ -38,28 +33,12 @@ switch ($_SERVER['REQUEST_METHOD']){
     	break;
     case 'POST':
     	switch ($_POST['request']){
-			case 'create':
-				$name = $_POST['name'];
-				$category_id = $category->create($name);
-				$returnObject['category_id'] = $category_id;
-				$returnObject['message'] = 'Category created';
-				break;
-			case 'create_and_set':
-				$report 		= new Report();
-				$name 			= $_POST['name'];
-				$report_id 		= $_POST['report_id'];
-				$category_id 	= $category->create($name,NULL);
-
-				$report->changeCategory($report_id,$category_id);
-				
-				$returnObject['category_id'] = $category_id;
-				$returnObject['message'] = 'Category created';
-				break;
-			case 'delete':
-				$category_id = $_POST['category_id'];
-				$category_id = $category->delete($category_id);
-				$returnObject['message'] = 'Category deleted';
-				break;
+			// case 'create':
+			// 	$name = $_POST['name'];
+			// 	$category_id = $category->create($name);
+			// 	$returnObject['category_id'] = $category_id;
+			// 	$returnObject['message'] = 'Category created';
+			// 	break;
 			default:
 				$returnObject['message'] = 'POST API Not found!';
 			break;

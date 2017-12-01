@@ -63,9 +63,10 @@ $projects = $project->listWithUser($user_id);
 	<label for="description">รายละเอียด</label>
 	<input type="text" name="desc" id="desc" placeholder="Description">
 
-	<input type="hidden" name="project_id" id="project_id">
+	<input type="text" name="project_id" id="project_id" placeholder="ProjectID">
 	<button id="btnSubmit" type="submit">สร้างโครงการ</button>
 </form>
+
 <script type="text/javascript" src="js/lib/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="js/lib/jquery-form.min.js"></script>
 <script type="text/javascript" src="js/lib/autosize.js"></script>

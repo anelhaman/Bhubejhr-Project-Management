@@ -1,8 +1,8 @@
-var api_category 	= 'api/category.php';
+var api_project 	= 'api/project.php';
 
 $(document).ready(function(){
-	var category_id;
-	var category_name;
+	var project_id;
+	var project_name;
 
 	autosize($('textarea'));
 
@@ -48,7 +48,7 @@ $(document).ready(function(){
 		$dialogForm.removeClass('open');
 		$overlay.removeClass('open');
 
-		$('#category_id').val('');
+		$('#project_id').val('');
 	    $('#name').val('');
 	    $('#desc').val('');
 	    $('#url').val('');
@@ -56,8 +56,8 @@ $(document).ready(function(){
 
 	$('.edit').click(function(e){
 		e.stopPropagation();
-		category_id 	= $(this).parent().attr('data-id');
-		category_name 	= $(this).parent().children('.detail').children('h2').html();
+		project_id 	= $(this).parent().attr('data-id');
+		project_name = $(this).parent().children('.detail').children('h2').html();
 		closeAllMenu();
 
 		$submenu = $(this).children('.edit-menu');
@@ -66,25 +66,24 @@ $(document).ready(function(){
 
 	$('.edit').on('click','.btn-editor', function(e){
 
-		console.log(category_id);
-
 		$.ajax({
-	        url         :api_category,
+	        url         :api_project,
 	        cache       :false,
 	        dataType    :"json",
 	        type        :"GET",
 	        data:{
 	            request 	:'get',
-	            category_id	:category_id
+	            project_id	:project_id
 	        },
 	        error: function (request, status, error) {
 	            console.log("Request Error",request.responseText);
 	        }
 	    }).done(function(data){
 	    	console.log(data);
-	    	$('#category_id').val(data.data.category_id);
-	    	$('#name').val(data.data.category_name);
-	    	$('#desc').val(data.data.category_desc);
+	    	
+	    	$('#project_id').val(data.data.project_id);
+	    	$('#name').val(data.data.project_name);
+	    	$('#desc').val(data.data.project_description);
 
 	    	$dialogForm.addClass('open');
 	    	$overlay.addClass('open');
@@ -95,16 +94,16 @@ $(document).ready(function(){
 	
 	$('.btn-delete').click(function(){
 
-		if(!confirm('คุณต้องการลบ "'+category_name+'"ใช่หรือไม่ ?')){ return false; }
+		if(!confirm('คุณต้องการลบ "'+project_name+'"ใช่หรือไม่ ?')){ return false; }
 
 		$.ajax({
-			url         :api_category,
+			url         :api_project,
 			cache       :false,
 			dataType    :"json",
 			type        :"POST",
 			data:{
 				request 	:'delete',
-				category_id	:category_id
+				project_id	:project_id
 			},
 			error: function (request, status, error) {
 				console.log("Request Error",request.responseText);
