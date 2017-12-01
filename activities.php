@@ -6,13 +6,11 @@ if (!$user_online) {
 	header("Location:./login.php");
 	exit();
 }
-
 $projectid = $_GET["project"];
 $ownerid = $_GET["owner"];
 
 $pj = $project->getProjectFromID($projectid);
 $allact = $activity->countActivitiesFromProjectID($projectid);
-
 ?>
 
 <!DOCTYPE html>
@@ -41,9 +39,6 @@ $allact = $activity->countActivitiesFromProjectID($projectid);
 
 	<div class="container" >
 		<div class="actcontent">
-
-
-
 	<h2> <?php echo $pj['name'] ;?></h2>
 
 

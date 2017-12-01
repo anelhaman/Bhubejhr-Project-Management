@@ -11,12 +11,18 @@ class Activity
     private $db;
 
 
-  function __construct()
+  public function __construct()
   {
     global $wpdb;
     $this->db = $wpdb;
+  }
 
-    # code...
+  public function listAll($project_id){
+  	$this->db->query('SELECT activity.id activity_id,activity.name activity_name,activity.status activity_status,activity.time activity_create_time FROM activity AS activity WHERE activity.projectid = :project_id ORDER BY activity.time ASC');
+  	$this->db->bind(':project_id',$project_id);
+	$this->db->execute();
+	$dataset = $this->db->resultset();
+	return $dataset;
   }
 
   public function getall(){
