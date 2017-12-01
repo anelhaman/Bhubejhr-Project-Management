@@ -140,12 +140,8 @@ body {
   background: #eeeeee;
   overflow-x: hidden;
 }
-body.loginBG {
-  background: url(../image/cover.jpg) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+body.registerBG {
+  background: #002e26;
 }
 .bounce {
   -webkit-animation-name: bounce;
@@ -1180,6 +1176,111 @@ body.loginBG {
   display: inline-block;
   font-size: 0.8em;
   color: #666666;
+}
+.register {
+  width: 30%;
+  margin: 0% 35%;
+  margin-top: 5%;
+  float: left;
+  display: inline-block;
+}
+.register .head {
+  width: 100%;
+  float: left;
+  display: inline-block;
+  margin-bottom: 10%;
+}
+.register .head .logo {
+  width: 15%;
+  float: left;
+  display: inline-block;
+}
+.register .head .logo img {
+  width: 100%;
+  float: left;
+  display: inline-block;
+}
+.register .head .text {
+  width: 80%;
+  margin-left: 5%;
+  float: right;
+  display: inline-block;
+}
+.register .head .text h1 {
+  color: #FFFFFF;
+  font-size: 1.2em;
+}
+.register .head .text p {
+  color: #66948c;
+  font-size: 0.8em;
+  letter-spacing: 1px;
+  line-height: 1.3em;
+}
+.register .note {
+  width: 100%;
+  float: left;
+  display: inline-block;
+  text-align: center;
+  color: #66948c;
+  margin-top: 5%;
+  font-size: 1em;
+}
+.register .note a {
+  color: #FFFFFF;
+}
+.register .form {
+  width: 80%;
+  padding: 10%;
+  float: left;
+  display: inline-block;
+  background: #FFFFFF;
+  box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+}
+.register .form label {
+  width: 100%;
+  float: left;
+  display: inline-block;
+  font-size: 0.9em;
+  color: #002e26;
+}
+.register .form label:hover {
+  cursor: pointer;
+}
+.register .form input[type='text'],
+.register .form textarea {
+  width: 100%;
+  float: left;
+  display: inline-block;
+  border: 0px;
+  border-bottom: 1px solid #DDDDDD;
+  font-size: 1.2em;
+  line-height: 1.5em;
+  margin: 0px;
+  padding: 2% 0px;
+  margin-bottom: 7%;
+  color: #666666;
+  resize: none;
+}
+.register .form input[type='text']:focus,
+.register .form textarea:focus {
+  color: #333333;
+  border-bottom: 1px solid #333333;
+}
+.register .form input[type='text']:hover,
+.register .form textarea:hover {
+  cursor: pointer;
+}
+.register .form button {
+  float: right;
+  display: inline-block;
+  background: #004d40;
+  color: #FFFFFF;
+  border: 0px;
+  font-size: 1em;
+  line-height: 1em;
+  padding: 15px 30px;
+  border-radius: 5px;
 }
 #progressbar {
   position: fixed;

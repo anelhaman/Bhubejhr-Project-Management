@@ -1052,6 +1052,122 @@
 	}
 }
 
+.register{
+	width: 30%;
+	margin: 0% 35%;
+	margin-top: 5%;
+	float: left;
+	display: inline-block;
+
+	.head{
+		width: 100%;
+		float: left;
+		display: inline-block;
+		margin-bottom: 10%;
+
+		.logo{
+			width: 15%;
+			float: left;
+			display: inline-block;
+
+			img{
+				width: 100%;
+				float: left;
+				display: inline-block;
+			}
+		}
+		.text{
+			width: 80%;
+			margin-left: 5%;
+			float: right;
+			display: inline-block;
+
+			h1{
+				color: #FFFFFF;
+				font-size: 1.2em;
+			}
+			p{
+				color: @primary_color_light;
+				font-size: 0.8em;
+				letter-spacing: 1px;
+				line-height: 1.3em;
+			}
+		}
+	}
+
+	.note{
+		width: 100%;
+		float: left;
+		display: inline-block;
+		text-align: center;
+		color: @primary_color_light;
+		margin-top: 5%;
+		font-size: 1em;
+
+		a{
+			color: #FFFFFF;
+		}
+	}
+	
+	.form{
+		width: 80%;
+		padding: 10%;
+		float: left;
+		display: inline-block;
+		background: #FFFFFF;
+		box-shadow: 1px 1px 25px rgba(0,0,0,0.3);
+		border-radius: 5px;
+
+		label{
+			width: 100%;
+			float: left;
+			display: inline-block;
+			font-size: 0.9em;
+			color: @primary_color_dark;
+
+			&:hover{
+				cursor: pointer;
+			}
+		}
+
+		input[type='text'], textarea{
+			width: 100%;
+			float: left;
+			display: inline-block;
+			border: 0px;
+			border-bottom: 1px solid #DDDDDD;
+			font-size: 1.2em;
+			line-height: 1.5em;
+			margin: 0px;
+			padding: 2% 0px;
+			margin-bottom: 7%;
+			color: #666666;
+			resize: none;
+
+			&:focus{
+				color: #333333;
+				border-bottom: 1px solid #333333;
+			}
+
+			&:hover{
+				cursor: pointer;
+			}
+		}
+
+		button{
+			float: right;
+			display: inline-block;
+			background: @primary_color;
+			color: #FFFFFF;
+			border: 0px;
+			font-size: 1em;
+			line-height: 1em;
+			padding: 15px 30px;
+			border-radius: 5px;
+		}
+	}
+}
+
 #progressbar{
 	position: fixed;
 	top: 0;
