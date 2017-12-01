@@ -6,9 +6,8 @@ if (!$user_online) {
 	header("Location:./login.php");
 	exit();
 }
-
-$alloroject = $project->countProjectFormOwnerID($user_id);
-
+// $alloroject = $project->countProjectFormOwnerID($user_id);
+$projects = $project->listWithUser($user_id);
 ?>
 
 <!DOCTYPE html>
@@ -39,11 +38,7 @@ $alloroject = $project->countProjectFormOwnerID($user_id);
 	<div id="indexcontent">
 	<h2>โครงการทั้งหมด</h2>
 
-	<?php
-		// echo "user code ".$user_id;
-	?>
-
-		<form class="form-horizontal" action="addproject.php" method="POST">
+	<form class="form-horizontal" action="addproject.php" method="POST">
 
 
 
@@ -81,34 +76,14 @@ $alloroject = $project->countProjectFormOwnerID($user_id);
 		      </tr>
 		    </thead>
 		    <tbody>
-
-		    	<?php
-
-		    	$i=0;
-		    	$r = $project->getProjectFromIdUser($user_id);
-					echo "<div style='color:#FFF'>User => ".$user_id."</div>";
-
-		    	foreach ($r as $key => $value) {
-		    		$i++;
-						$allact = $activity->countActivitiesFromProjectID($value['id']);
-
-		    		echo "<tr> ";
-		    		echo	"<td class='no center'>".$i."</td>";
-						echo "<td> ";
-						echo "<a href='activities.php?project=".$value["id"]."&owner=".$value["owner"]."'>";
-		    		echo $value['name'];
-						echo " - <a >เพิ่มเอกสาร</a> </td>";
-						echo "</a>";
-		    		echo "<td class='center w'> 0 / ".$allact['n']." </td>";
-
-		    	}
-
-		    	?>
-
-
-						 </tr>
-		    </tbody>
-
+		    	<?php foreach ($projects as $var) {?>
+		    	<tr>
+		    		<td><?php echo $var['project_id'];?></td>
+		    		<td><?php echo $var['project_name'];?></td>
+		    		<td><?php echo $var['project_total_activity'];?></td>
+		    	</tr>
+		    	<?php }?>
+		   </tbody>
 		  </table>
 		  </div>
 		  </div>
