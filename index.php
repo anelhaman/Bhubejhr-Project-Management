@@ -6,7 +6,8 @@ if (!$user_online) {
 	header("Location:./login.php");
 	exit();
 }
-// $alloroject = $project->countProjectFormOwnerID($user_id);
+
+$project = new Project();
 $projects = $project->listWithUser($user_id);
 ?>
 
@@ -79,7 +80,7 @@ $projects = $project->listWithUser($user_id);
 		    	<?php foreach ($projects as $var) {?>
 		    	<tr>
 		    		<td><?php echo $var['project_id'];?></td>
-		    		<td><?php echo $var['project_name'];?></td>
+		    		<td><a href="project.php?id=<?php echo $var['project_id']?>"><?php echo $var['project_name'];?></a></td>
 		    		<td><?php echo $var['project_total_activity'];?></td>
 		    	</tr>
 		    	<?php }?>

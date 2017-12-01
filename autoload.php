@@ -26,7 +26,4 @@ $user->sec_session_start();
 $user_online = $user->loginChecking();
 $user_id = $user->getId();
 
-$project = new Project;
-$activity = new Activity();
- ?>
- <link href="https://fonts.googleapis.com/css?family=Taviraj" rel="stylesheet">
+?>
