@@ -41,9 +41,6 @@ $allact = $activity->countActivitiesFromProjectID($projectid);
 
 	<div class="container" >
 		<div class="actcontent">
-
-
-
 	<h2> <?php echo $pj['name'] ;?></h2>
 
 
